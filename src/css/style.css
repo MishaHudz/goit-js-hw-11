@@ -1,0 +1,100 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.search-form {
+  width: 300px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+/* =======================Button Search============================ */
+.input-fild {
+  width: 300px;
+  height: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 50px;
+  border-radius: 20px;
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-button {
+  padding: 0;
+  height: 40px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+/* .search-button:hover,
+.search-button:focus {
+  background-color: black;
+}
+
+.search-button:hover .svg {
+  stroke: white;
+} */
+/* ================================================================= */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+}
+.photo-card {
+  border: 1px solid black;
+  border-radius: 15px;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.info {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  display: flex;
+  gap: 6px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+}
+.photo-card-image {
+  margin-bottom: 5px;
+}
+
+.load-more {
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.is-hiden {
+  display: none;
+}
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 1300px;
+  margin-right: auto;
+  margin-left: auto;
+}
