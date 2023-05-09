@@ -1,3 +1,4 @@
+import axios from 'axios';
 export class fetchImages {
   #BASE_URS;
   #PARAMS;
@@ -19,8 +20,12 @@ export class fetchImages {
   }
   getImages(inputedImagesRequest) {
     if (inputedImagesRequest) this.searhTerm = inputedImagesRequest;
-    return fetch(
-      `${this.#BASE_URS}?q=${this.searhTerm}&page=${this.page}&${this.#PARAMS}`
-    ).then(res => res.json());
+    return axios
+      .get(
+        `${this.#BASE_URS}?q=${this.searhTerm}&page=${this.page}&${
+          this.#PARAMS
+        }`
+      )
+      .then(res => res.data);
   }
 }
