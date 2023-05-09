@@ -1,5 +1,9 @@
 import { fetchImages } from './js/fetchImages';
-import { MasssageIfNotFoundImages } from './js/massages';
+import {
+  MasssageIfNotFoundImages,
+  masssageImagesFinished,
+  masssageTotalHits,
+} from './js/massages';
 import { clearMarkup, generateMarkup } from './js/marcupActions';
 
 const form = document.querySelector('.search-form');
@@ -8,6 +12,7 @@ const loadMoreBtn = document.querySelector('.load-more');
 const fetchedImages = new fetchImages();
 
 form.addEventListener('submit', onSubmitForm);
+loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
 function onSubmitForm(evt) {
   evt.preventDefault();
@@ -19,27 +24,26 @@ function onSubmitForm(evt) {
   fatchDataAndCreateMarkup(inputedString);
 }
 
-loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
-
 function onLoadMoreBtnClick() {
   fetchedImages.page += 1;
   fatchDataAndCreateMarkup();
 }
 
-function fatchDataAndCreateMarkup(inputedValue) {
-  fetchedImages.getImages(inputedValue).then(response => {
-    if (response.hits.length === 0) {
-      loadMoreBtn.classList.add('is-hiden');
-      MasssageIfNotFoundImages();
-      return;
-    }
-    targetMarkupContainer.insertAdjacentHTML(
-      'beforeend',
-      generateMarkup(response.hits)
-    );
-    fetchedImages.totalPages = Math.ceil(response.totalHits / 40);
-    ActivateOrDisableLoadMoreBtn();
-  });
+async function fatchDataAndCreateMarkup(inputedValue) {
+  const responseObj = await fetchedImages.getImages(inputedValue);
+
+  if (responseObj.hits.length === 0) {
+    loadMoreBtn.classList.add('is-hiden');
+    MasssageIfNotFoundImages();
+    return;
+  }
+  targetMarkupContainer.insertAdjacentHTML(
+    'beforeend',
+    generateMarkup(responseObj.hits)
+  );
+  fetchedImages.totalPages = Math.ceil(responseObj.totalHits / 40);
+  if (fetchedImages.page === 1) masssageTotalHits(responseObj.totalHits);
+  ActivateOrDisableLoadMoreBtn();
 }
 
 function ActivateOrDisableLoadMoreBtn() {
@@ -49,5 +53,6 @@ function ActivateOrDisableLoadMoreBtn() {
 
   if (fetchedImages.totalPages === fetchedImages.page) {
     loadMoreBtn.classList.add('is-hiden');
+    masssageImagesFinished();
   }
 }

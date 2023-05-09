@@ -18,14 +18,18 @@ export class fetchImages {
       per_page: 40,
     });
   }
-  getImages(inputedImagesRequest) {
+  async getImages(inputedImagesRequest) {
     if (inputedImagesRequest) this.searhTerm = inputedImagesRequest;
-    return axios
-      .get(
+
+    try {
+      const responce = await axios.get(
         `${this.#BASE_URS}?q=${this.searhTerm}&page=${this.page}&${
           this.#PARAMS
         }`
-      )
-      .then(res => res.data);
+      );
+      return responce.data;
+    } catch {
+      return { hits: [] };
+    }
   }
 }

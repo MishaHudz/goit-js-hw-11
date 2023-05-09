@@ -9,3 +9,17 @@ export function MasssageIfNotFoundImages() {
     }
   );
 }
+
+export function masssageImagesFinished() {
+  Notify.info(`We're sorry, but you've reached the end of search results.`, {
+    timeout: 1000,
+    showOnlyTheLastOne: true,
+  });
+}
+
+export function masssageTotalHits(numberOgImages) {
+  Notify.success(`Hooray! We found ${numberOgImages} images.`, {
+    timeout: 1000,
+    showOnlyTheLastOne: true,
+  });
+}

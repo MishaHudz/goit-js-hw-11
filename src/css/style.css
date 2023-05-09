@@ -37,16 +37,23 @@ p {
   background-color: transparent;
 
   cursor: pointer;
+
+  transition: background-color 250ms;
 }
 
-/* .search-button:hover,
+.search-button:hover,
 .search-button:focus {
   background-color: black;
 }
+.search-button .search-icon {
+  transition: fill 250ms;
+}
 
-.search-button:hover .svg {
-  stroke: white;
-} */
+.search-button:hover .search-icon,
+.search-button:focus .search-icon {
+  fill: white;
+}
+
 /* ================================================================= */
 
 .gallery {
@@ -83,9 +90,21 @@ p {
 
 .load-more {
   display: block;
-  width: 100px;
+  height: 40px;
+  width: 150px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid black;
+  transition: background-color 250ms, color 250ms;
+}
+
+.load-more:hover,
+.load-more:focus {
+  background-color: black;
+  color: white;
 }
 
 .is-hiden {
