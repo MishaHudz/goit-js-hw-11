@@ -1,5 +1,5 @@
 import axios from 'axios';
-export class fetchImages {
+export class FetchImages {
   #BASE_URS;
   #PARAMS;
   searhTerm;

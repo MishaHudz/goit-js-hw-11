@@ -1,5 +1,9 @@
 import { targetMarkupContainer } from '../index';
 
+import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 export function generateMarkup(InputedArrayOfPictures) {
   return InputedArrayOfPictures.map(picture => {
     const {
@@ -12,7 +16,8 @@ export function generateMarkup(InputedArrayOfPictures) {
       downloads,
     } = picture;
     return `<div class="photo-card">
-  <img class="photo-card-image" src="${webformatURL}" width="300px" height="200px" alt="${tags}" loading="lazy" />
+    <a href="${largeImageURL}"><img class="photo-card-image" src="${webformatURL}" width="300px" height="200px" alt="${tags}" loading="lazy" /></a>
+  
   <div class="info">
     <p class="info-item">
       <b>Likes</b>${likes}
@@ -34,3 +39,6 @@ export function generateMarkup(InputedArrayOfPictures) {
 export function clearMarkup() {
   targetMarkupContainer.innerHTML = '';
 }
+
+export let gallery = new SimpleLightbox('.photo-card a');
+gallery.on('show.simplelightbox', function () {});
